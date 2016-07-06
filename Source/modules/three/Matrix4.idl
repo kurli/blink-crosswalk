@@ -1,0 +1,55 @@
+// Copyright (c) 2014 The Chromium Authors. All rights reserved.
+// Copyright (c) 2015 Intel Corporation. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+[
+    WillBeGarbageCollected,
+    Constructor(float arg0, float arg1, float arg2, float arg3, float arg4, float arg5, float arg6, float arg7, float arg8, float arg9, float arg10, float arg11, float arg12, float arg13, float arg14, float arg15),
+    NoInterfaceObject
+] interface Matrix4  {
+    Matrix4 clone();
+    Matrix4 set(float arg0, float arg1, float arg2, float arg3, float arg4, float arg5, float arg6, float arg7, float arg8, float arg9, float arg10, float arg11, float arg12, float arg13, float arg14, float arg15);
+    Vector3 rotateAxis(Vector3 arg0);
+    Matrix4 makeFrustum(float arg0, float arg1, float arg2, float arg3, float arg4, float arg5);
+    Matrix4 extractRotation(Matrix4 arg0);
+    Matrix4 lookAt(Vector3 arg0, Vector3 arg1, Vector3 arg2);
+    Quaternion getRotation();
+    Matrix4 makeScale(float arg0, float arg1, float arg2);
+    Matrix4 setPosition(Vector3 arg0);
+    Matrix4 compose(Vector3 arg0, Quaternion arg1, Vector3 arg2);
+    Matrix4 makeTranslation(float arg0, float arg1, float arg2);
+    Matrix4 rotateByAxis(Vector3 arg0, float arg1);
+    Matrix4 rotateX(float arg0);
+    Matrix4 rotateY(float arg0);
+    Matrix4 rotateZ(float arg0);
+    Matrix4 identity();
+    Matrix4 setRotationFromQuaternion(Quaternion arg0);
+    Matrix4 getInverse(Matrix4 arg0);
+    Matrix4 translate(Vector3 arg0);
+    Vector4 getAxisAngle();
+    Matrix4 makeRotationX(float arg0);
+    Matrix4 makeRotationZ(float arg0);
+    Matrix4 makeOrthographic(float arg0, float arg1, float arg2, float arg3, float arg4, float arg5);
+    float determinant();
+    Matrix4 makeRotationAxis(Vector3 arg0, float arg1);
+    Vector4 crossVector(Vector4 arg0);
+    Matrix4 transpose();
+    Matrix4 multiplyScalar(float arg0);
+    Vector3 getColumnX();
+    Vector3 getColumnY();
+    Vector3 getColumnZ();
+    Matrix4 extractPosition(Matrix4 arg0);
+    Matrix4 scale(Vector3 arg0);
+    Matrix4 multiply(Matrix4 arg0, Matrix4 arg1);
+    Vector3 getScale();
+    Matrix4 copy(Matrix4 arg0);
+    Vector3 getPosition();
+    Matrix4 setRotationFromEuler(Vector3 arg0, short arg1);
+    Matrix4 makePerspective(float arg0, float arg1, float arg2, float arg3);
+    Matrix4 makeRotationY(float arg0);
+    Matrix4 multiplySelf(Matrix4 arg0);
+    Vector3 getEulerRotation(short arg0);
+    float getMaxScaleOnAxis();
+    void decompose(Vector3 arg0, Quaternion arg1, Vector3 arg2);
+};

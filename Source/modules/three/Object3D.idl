@@ -1,0 +1,23 @@
+// Copyright (c) 2014 The Chromium Authors. All rights reserved.
+// Copyright (c) 2015 Intel Corporation. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+[
+    WillBeGarbageCollected,
+    NoInterfaceObject
+] interface Object3D  {
+    void translateX(float arg0);
+    void translateY(float arg0);
+    void translateZ(float arg0);
+    Object3D getChildByName(DOMString arg0, boolean arg1);
+    void updateMatrix();
+    void remove(Object3D arg0);
+    void add(Object3D arg0);
+    void lookAt(Vector3 arg0);
+    void updateMatrixWorld(boolean arg0);
+    void applyMatrix(Matrix4 arg0);
+    void translate(float arg0, Vector3 arg1);
+    short type();
+     static Object3D createInternal();
+};

@@ -138,6 +138,7 @@ public:
     void bufferData(GLenum target, long long size, GLenum usage);
     void bufferData(GLenum target, DOMArrayBuffer* data, GLenum usage);
     void bufferData(GLenum target, DOMArrayBufferView* data, GLenum usage);
+    void bufferData(GLenum target, long long size, const void* data, GLenum usage);
     void bufferSubData(GLenum target, long long offset, DOMArrayBuffer* data);
     void bufferSubData(GLenum target, long long offset, DOMArrayBufferView* data);
 
@@ -254,6 +255,8 @@ public:
         GLenum format, GLenum type, HTMLCanvasElement*, ExceptionState&);
     void texImage2D(GLenum target, GLint level, GLenum internalformat,
         GLenum format, GLenum type, HTMLVideoElement*, ExceptionState&);
+    void texImage2D(GLenum target, GLint level, GLenum internalformat,
+        GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const void* pixels);
 
     void texParameterf(GLenum target, GLenum pname, GLfloat param);
     void texParameteri(GLenum target, GLenum pname, GLint param);
@@ -273,33 +276,43 @@ public:
     void uniform1f(const WebGLUniformLocation*, GLfloat x);
     void uniform1fv(const WebGLUniformLocation*, DOMFloat32Array* v);
     void uniform1fv(const WebGLUniformLocation*, Vector<GLfloat>&);
+    void uniform1fv(const WebGLUniformLocation* location, int length, const void* data);
     void uniform1i(const WebGLUniformLocation*, GLint x);
     void uniform1iv(const WebGLUniformLocation*, DOMInt32Array* v);
     void uniform1iv(const WebGLUniformLocation*, Vector<GLint>&);
+    void uniform1iv(const WebGLUniformLocation* location, int length, const void* data);
     void uniform2f(const WebGLUniformLocation*, GLfloat x, GLfloat y);
     void uniform2fv(const WebGLUniformLocation*, DOMFloat32Array* v);
     void uniform2fv(const WebGLUniformLocation*, Vector<GLfloat>&);
+    void uniform2fv(const WebGLUniformLocation*, int length, const void* data);
     void uniform2i(const WebGLUniformLocation*, GLint x, GLint y);
     void uniform2iv(const WebGLUniformLocation*, DOMInt32Array* v);
     void uniform2iv(const WebGLUniformLocation*, Vector<GLint>&);
+    void uniform2iv(const WebGLUniformLocation*, int length, const void* data);
     void uniform3f(const WebGLUniformLocation*, GLfloat x, GLfloat y, GLfloat z);
     void uniform3fv(const WebGLUniformLocation*, DOMFloat32Array* v);
     void uniform3fv(const WebGLUniformLocation*, Vector<GLfloat>&);
+    void uniform3fv(const WebGLUniformLocation*, int length, const void* data);
     void uniform3i(const WebGLUniformLocation*, GLint x, GLint y, GLint z);
     void uniform3iv(const WebGLUniformLocation*, DOMInt32Array* v);
     void uniform3iv(const WebGLUniformLocation*, Vector<GLint>&);
     void uniform4f(const WebGLUniformLocation*, GLfloat x, GLfloat y, GLfloat z, GLfloat w);
     void uniform4fv(const WebGLUniformLocation*, DOMFloat32Array* v);
     void uniform4fv(const WebGLUniformLocation*, Vector<GLfloat>&);
+    void uniform4fv(const WebGLUniformLocation*, int length, const void* data);
     void uniform4i(const WebGLUniformLocation*, GLint x, GLint y, GLint z, GLint w);
     void uniform4iv(const WebGLUniformLocation*, DOMInt32Array* v);
     void uniform4iv(const WebGLUniformLocation*, Vector<GLint>&);
+    void uniform4iv(const WebGLUniformLocation*, int length, const void* data);
     void uniformMatrix2fv(const WebGLUniformLocation*, GLboolean transpose, DOMFloat32Array* value);
     void uniformMatrix2fv(const WebGLUniformLocation*, GLboolean transpose, Vector<GLfloat>& value);
+    void uniformMatrix2fv(const WebGLUniformLocation*, GLboolean transpose, int length, const void* data);
     void uniformMatrix3fv(const WebGLUniformLocation*, GLboolean transpose, DOMFloat32Array* value);
+    void uniformMatrix3fv(const WebGLUniformLocation*, GLboolean transpose, int length, const void* data);
     void uniformMatrix3fv(const WebGLUniformLocation*, GLboolean transpose, Vector<GLfloat>& value);
     void uniformMatrix4fv(const WebGLUniformLocation*, GLboolean transpose, DOMFloat32Array* value);
     void uniformMatrix4fv(const WebGLUniformLocation*, GLboolean transpose, Vector<GLfloat>& value);
+    void uniformMatrix4fv(const WebGLUniformLocation*, GLboolean transpose, int length, const void* data);
 
     void useProgram(WebGLProgram*);
     void validateProgram(WebGLProgram*);

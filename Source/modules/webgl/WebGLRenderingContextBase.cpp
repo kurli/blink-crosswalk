@@ -3849,6 +3849,21 @@ void WebGLRenderingContextBase::texImage2D(GLenum target, GLint level, GLenum in
 }
 
 void WebGLRenderingContextBase::texImage2D(GLenum target, GLint level, GLenum internalformat,
+        GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const void* pixels) {
+    WebGLTexture* tex = validateTextureBinding("texImage2D", target, true);
+    ASSERT(validateTexFuncParameters("texImage2D", NotTexSubImage2D, target, level, internalformat, width, height, border, format, type));
+    ASSERT(tex);
+    ASSERT(!level || !WebGLTexture::isNPOT(width, height));
+    ASSERT(!pixels || validateSettableTexFormat("texImage2D", internalformat));
+    if (m_unpackAlignment != 1)
+        webContext()->pixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    webContext()->texImage2D(target, level, convertTexInternalFormat(internalformat, type), width, height, border, format, type, pixels);
+    tex->setLevelInfo(target, level, internalformat, width, height, 1, type);
+    if (m_unpackAlignment != 1)
+        webContext()->pixelStorei(GL_UNPACK_ALIGNMENT, m_unpackAlignment);
+}
+
+void WebGLRenderingContextBase::texImage2D(GLenum target, GLint level, GLenum internalformat,
     GLenum format, GLenum type, HTMLImageElement* image, ExceptionState& exceptionState)
 {
     if (isContextLost() || !validateHTMLImageElement("texImage2D", image, exceptionState))
@@ -6273,6 +6288,68 @@ int WebGLRenderingContextBase::externallyAllocatedBytesPerPixel()
 DrawingBuffer* WebGLRenderingContextBase::drawingBuffer() const
 {
     return m_drawingBuffer.get();
+}
+
+void WebGLRenderingContextBase::bufferData(GLenum target, long long size, const void* data, GLenum usage)
+{
+    if (isContextLost())
+        return;
+    if (!size) {
+        synthesizeGLError(GL_INVALID_VALUE, "bufferData", "size == 0");
+        return;
+    }
+    bufferDataImpl(target, size, data, usage);
+}
+
+void WebGLRenderingContextBase::uniform1fv(const WebGLUniformLocation* location, int length, const void* data)
+{
+    // if (isContextLost() || !validateUniformParameters("uniform1fv", location, v, 1))
+    //     return;
+
+    webContext()->uniform1fv(location->location(), length, (const WGC3Dfloat*)data);
+}
+
+void WebGLRenderingContextBase::uniform1iv(const WebGLUniformLocation* location, int length, const void* data)
+{
+    // if (isContextLost() || !validateUniformParameters("uniform1iv", location, v, 1))
+    //     return;
+
+    webContext()->uniform1iv(location->location(), length, (const WGC3Dint*)data);
+}
+
+void WebGLRenderingContextBase::uniform2fv(const WebGLUniformLocation* location, int length, const void* data)
+{
+    webContext()->uniform2fv(location->location(), length >> 1, (const WGC3Dfloat*)data);
+}
+
+void WebGLRenderingContextBase::uniform4fv(const WebGLUniformLocation* location, int length, const void* data)
+{
+    webContext()->uniform4fv(location->location(), length >> 2, (const WGC3Dfloat*)data);
+}
+
+void WebGLRenderingContextBase::uniform4iv(const WebGLUniformLocation* location, int length, const void* data)
+{
+    webContext()->uniform4iv(location->location(), length >> 2, (const WGC3Dint*)data);
+}
+
+void WebGLRenderingContextBase::uniformMatrix2fv(const WebGLUniformLocation* location, GLboolean transpose, int length, const void* data)
+{
+    webContext()->uniformMatrix2fv(location->location(), length >> 2, transpose, (const WGC3Dfloat*)data);
+}
+
+void WebGLRenderingContextBase::uniformMatrix3fv(const WebGLUniformLocation* location, GLboolean transpose, int size, const void* data)
+{
+    webContext()->uniformMatrix3fv(location->location(), size / 9, transpose, (const WGC3Dfloat*)data);
+}
+
+void WebGLRenderingContextBase::uniformMatrix4fv(const WebGLUniformLocation* location, GLboolean transpose, int count, const void* data)
+{
+    webContext()->uniformMatrix4fv(location->location(), count >> 4, transpose, (const WGC3Dfloat*)data);
+}
+
+void WebGLRenderingContextBase::uniform3fv(const WebGLUniformLocation* location, int length, const void* data)
+{
+    webContext()->uniform3fv(location->location(), length/3, (const WGC3Dfloat*) data);
 }
 
 } // namespace blink

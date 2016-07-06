@@ -47,6 +47,12 @@
     'defines': [
       'BLINK_IMPLEMENTATION=1',
       'INSIDE_BLINK',
+      'THREE_SEPARATE_COMPILATION',
+      'THREE_GLES'
+    ],          
+    'include_dirs': [
+      '../core/three',
+      '../core/three/rapidjson/include'
     ],
     'sources': [
       '<@(modules_files)',

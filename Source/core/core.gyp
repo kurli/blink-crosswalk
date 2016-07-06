@@ -35,6 +35,7 @@
     '../build/scripts/scripts.gypi',
     '../bindings/core/core.gypi',  # core can depend on bindings/core, but not on bindings
     'core.gypi',
+    'three.gypi'
   ],
 
   'variables': {
@@ -605,6 +606,7 @@
         '<(DEPTH)/third_party/qcms/qcms.gyp:qcms',
         '<(DEPTH)/url/url.gyp:url_lib',
         '<(DEPTH)/v8/tools/gyp/v8.gyp:v8',
+        'three'
       ],
       'export_dependent_settings': [
         'webcore_generated',

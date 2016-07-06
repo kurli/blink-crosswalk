@@ -1,0 +1,30 @@
+// Copyright (c) 2014 The Chromium Authors. All rights reserved.
+// Copyright (c) 2015 Intel Corporation. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+[
+    WillBeGarbageCollected,
+    Constructor(float arg0, float arg1, float arg2, float arg3),
+    NoInterfaceObject
+] interface Vector4  {
+    Vector4 normalize();
+    Vector4 clone();
+    Vector4 set(float arg0, float arg1, float arg2, float arg3);
+    Vector4 sub(Vector4 arg0, Vector4 arg1);
+    Vector4 addSelf(Vector4 arg0);
+    Vector4 lerpSelf(Vector4 arg0, float arg1);
+    Vector4 multiplyScalar(float arg0);
+    float length();
+    Vector4 setAxisAngleFromQuaternion(Quaternion arg0);
+    Vector4 divideScalar(float arg0);
+    Vector4 add(Vector4 arg0, Vector4 arg1);
+    float lengthSq();
+    float dot(Vector4 arg0);
+    Vector4 negate();
+    boolean equals(Vector4 arg0);
+    Vector4 copy(Vector4 arg0);
+    Vector4 copy(Vector3 arg0);
+    Vector4 setLength(float arg0);
+    Vector4 subSelf(Vector4 arg0);
+};
